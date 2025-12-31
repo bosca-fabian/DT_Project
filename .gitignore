@@ -1,3 +1,6 @@
 .gitignore
 *.csv
 todo.txt
+.venv
+.snakemake
+__pycache__
