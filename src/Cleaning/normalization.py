@@ -5,6 +5,9 @@ input_file = ("data/raw/records_2022.csv")
 
 df = pd.read_csv(input_file)
 
+#make negative values positive
+df['value'] = df['value'].abs()
+
 #remove needless whitespaces
 df = df.apply(lambda x: x.astype(str).str.strip())
 
@@ -21,12 +24,9 @@ df['category'] = df['category'].astype(str).str.lower()
 df['category'] = df['category'].str.replace(r'[^a-z]+', '_', regex=True)
 df['category'] = df['category'].str.replace(r'labtest', 'lab_test', regex=True)
 
-#make negative values positive
-df['value'] = df['value'].abs()
-
 #convert status all to lower
 df['status'] = df['status'].astype(str).str.lower()
 
 #Write to file
-df.to_csv("data/interim/normalized_records_2022.csv", index=False, date_format='%Y-%m-%d')
+df.to_csv("data/interim/normalized_records_2022.csv", index=False, date_format='%Y-%m-%d', na_rep="NULL")
 
