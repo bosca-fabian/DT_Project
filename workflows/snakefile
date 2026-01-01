@@ -2,6 +2,14 @@ rule validation:
     input:
         "data/raw/records_2022.csv"
     output:
-        "data/processed/validation_output.txt"
+        "reports/validation_results/initial_validation_output.txt"
     shell:
         "python src/Validation/validate.py {input} > {output}"
+
+rule normalization
+    input:
+        "data/raw/records_2022.csv"
+    output:
+        "data/interim/normalized_records_2022.csv"
+    shell:
+        "python src/Cleaning/normalization.py {input} > {output}"
