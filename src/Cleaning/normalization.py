@@ -2,12 +2,13 @@ import pandas as pd
 import numpy as np
 import sys
 
-# input_file = ("data/raw/records_2022.csv")
+
 input_file = sys.argv[1]
 output_file = sys.argv[2]
 
 df = pd.read_csv(input_file)
 
+#rename for next file source_system of 2023 schema in source from 2022 schema
 if input_file.endswith("2023.csv"):
     if 'source_system' in df.columns:
         df = df.rename(columns={'source_system' : 'source'})
