@@ -17,7 +17,7 @@ expected_schema = pa.DataFrameSchema(
     'priority' : pa.Column(str, coerce=True, required=False)
 })
 
-input_file = ('data/raw/records_2022.csv')
+input_file = ('data/processed/final_records_2022.csv')
 # input_file = sys.argv[1]
 
 df = pd.read_csv(input_file)
