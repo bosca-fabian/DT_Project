@@ -25,7 +25,9 @@ output_file = sys.argv[2]
 
 df = pd.read_csv(input_file)
 
-year = re.search(r"\b(2022|2023)\b", input_file)
+
+match = re.search(r"\b(2022|2023)\b", input_file)
+year = match.group(1) if match else "Unkown year"
 
 report_md = f"""# Data Quality Report: {year}
 ## Summary
