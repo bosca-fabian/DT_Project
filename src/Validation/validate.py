@@ -2,6 +2,7 @@ import pandas as pd
 import sys
 import numpy as np
 import pandera as pa
+from datetime import date
 
 
 expected_schema = pa.DataFrameSchema(
@@ -23,16 +24,26 @@ output_file = sys.argv[2]
 
 df = pd.read_csv(input_file)
 
+year = re.search(r"\b(2022|2023)\b", input_file)
+
+report_md = f"""# Data Quality Report: {year}
+## Summary
+- **Date Processed:** {date.today}
+- **Source File:** {input_file}
+## Results:\n"""
+
 try:
     expected_schema.validate(df, lazy=True)
     with open(output_file, "w") as f:
-        f.write("Schema validation passed!")
+        f.write(report_md)
+        f.write("Schema validation passed! + all values within fields are proper.")
     
 except pa.errors.SchemaErrors as err:
     
     errors_df = err.failure_cases
 
     with open(output_file, "w") as f:
+        f.write(report_md)
         f.write("\n--- Summary of Errors ---")
         f.write(errors_df[['column', 'check', 'failure_case', 'index']].to_string())
 
