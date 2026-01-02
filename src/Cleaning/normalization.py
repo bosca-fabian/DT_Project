@@ -1,9 +1,16 @@
 import pandas as pd
 import numpy as np
+import sys
 
-input_file = ("data/raw/records_2022.csv")
+# input_file = ("data/raw/records_2022.csv")
+input_file = sys.argv[1]
+output_file = sys.argv[2]
 
 df = pd.read_csv(input_file)
+
+if input_file.endswith("2023.csv"):
+    if 'source_system' in df.columns:
+        df = df.rename(columns={'source_system' : 'source'})
 
 #make negative values positive
 df['value'] = df['value'].abs()
@@ -28,5 +35,5 @@ df['category'] = df['category'].str.replace(r'labtest', 'lab_test', regex=True)
 df['status'] = df['status'].astype(str).str.lower()
 
 #Write to file
-df.to_csv("data/interim/normalized_records_2022.csv", index=False, date_format='%Y-%m-%d', na_rep="NULL")
+df.to_csv(output_file, index=False, date_format='%Y-%m-%d', na_rep="NULL")
 
