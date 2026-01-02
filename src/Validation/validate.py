@@ -3,6 +3,7 @@ import sys
 import numpy as np
 import pandera as pa
 from datetime import date
+import re
 
 
 expected_schema = pa.DataFrameSchema(

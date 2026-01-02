@@ -28,15 +28,20 @@ The raw data consists of two primary files:
 * **records_2022.csv**: Contains columns for `record_id`, `date`, `category`, `value`, `unit`, `source`, and `status`.
 * **records_2023.csv**: Includes expanded columns such as `source_system`, `department`, and `priority`.
 
+## **Note: The raw records are not uploaded with the repository as to not distribute them online.**
+
 ## Reproducibility Instructions
 
 ### Environment Setup
-This project uses `pip` and `venv` for environment management. To recreate the environment:
-1. **Create a virtual environment**: `python -m venv venv`
+This project was made in `VS Code` and uses `pip` and `venv` for environment management. To recreate the environment:
+1. **Create a virtual environment**: `python -m venv .venv`
 2. **Activate the environment**:
    * Windows: `.\venv\Scripts\activate`
    * macOS/Linux: `source venv/bin/activate`
 3. **Install dependencies**: `pip install -r requirements.txt`
+4. **Optional**: There is a situation in which you can't run the activation script in Powershell because running scripts is disabled on your system. It has to do with execution policies and if you want to fix this run in the Powershell terminal the following command:
+   `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned`
+After running that command just go back to first step and try again.
 
 ### Running the Pipeline
 The entire workflow is automated. To rebuild all outputs from raw data, run:
