@@ -4,6 +4,8 @@ rule all:
     input:
         expand("data/processed/final_records_{year}.csv", year=YEARS),
 
+        expand("data/processed/final_records_{year}.json", year=YEARS),
+
         expand("reports/validation_results/initial_validation_output_{year}.txt", year=YEARS),
 
         expand("reports/validation_results/final_validation_output_{year}.txt", year=YEARS)
@@ -36,7 +38,8 @@ rule finalize_data:
     input:
         "data/interim/imputated_records_{year}.csv"
     output:
-        "data/processed/final_records_{year}.csv"
+        "data/processed/final_records_{year}.csv",
+        "data/processed/final_records_{year}.json"
     shell:
         "python src/Cleaning/deduplication.py {input} {output}"
 

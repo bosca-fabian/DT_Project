@@ -1,1 +1,3 @@
-validation -> normalization-> imputation -> deduplication -> validation -> report
+initial_validation -> normalization-> imputation -> deduplication -> final_validation
+
+run in main folder, \DT_Project>, snakemake -c2  

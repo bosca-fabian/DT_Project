@@ -1,0 +1,3 @@
+I chose to export the final processed records in JSON format alongside the standard CSV format. 
+JSON was selected because it is the industry standard for exchanging data between web applications and APIs. Unlike CSV, which is strictly flat and tabular, JSON allows for hierarchical structures and is more natively compatible with NoSQL databases.
+The file size increased slightly due to the repetition of column keys, the data became more self-describing and easier to integrate into modern web services.
